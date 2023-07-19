@@ -1,0 +1,1 @@
+StandDecoratingImages.vue
