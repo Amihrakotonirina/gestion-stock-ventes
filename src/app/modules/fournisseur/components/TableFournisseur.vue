@@ -3,10 +3,10 @@
     <div class="card-header pb-0">
       <h3>Liste des fournisseurs ({{listFournisseurs.length}})</h3>
       
-      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
-        Ajouter un fournisseur
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
+       <i class="fa fa-plus"></i> Ajouter un fournisseur
       </button>
-
+    </div>
 <!-- Modal -->
 <div class="modal fade" id="fournisseurModal" tabindex="-1" aria-labelledby="fournisseurModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -20,7 +20,7 @@
 
           <div class="mb-3">
             <label for="libelleInput" class="form-label">Fournisseur</label>
-            <input id="libelleInput" class="form-control" v-model="nouveauFournisseur.libelle" placeholder="Nom du fournisseur" required>
+            <input id="libelleInput" class="form-control" v-model="nouveauFournisseur.nomFournisseur" placeholder="Nom du fournisseur" required>
           </div>
           <div class="mb-3">
             <label for="referenceInput" class="form-label">Code</label>
@@ -28,15 +28,15 @@
           </div>
           <div class="mb-3">
             <label for="prixInput" class="form-label">Contact</label>
-            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.contactFournisseur" type="number" placeholder="033 33 333 33" required>
+            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.contactFournisseur" placeholder="033 33 333 33" required>
           </div>
           <div class="mb-3">
             <label for="prixInput" class="form-label">Email</label>
-            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.emailFournisseur" type="number" placeholder="test@fournisseur.com" required>
+            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.emailFournisseur" placeholder="test@fournisseur.com" required>
           </div>
           <div class="mb-3">
             <label for="prixInput" class="form-label">Adresse</label>
-            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.adresseFournisseur" type="number" placeholder="Adresse du fournisseur" required>
+            <input id="prixInput" class="form-control" v-model.number="nouveauFournisseur.adresseFournisseur" placeholder="Adresse du fournisseur" required>
           </div>
           <div class="mb-3">
             <label for="descriptionInput" class="form-label">Description</label>
@@ -48,15 +48,14 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="submit" @click="storeFournisseur.addFournisseur(nouveauFournisseur)" class="btn btn-primary">{{ modificationFournisseur ? 'Modifier' : 'Ajouter' }}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" @click="ajouterFournisseur()" data-bs-dismiss="modal" class="btn btn-primary">{{ modificationFournisseur ? 'Modifier' : 'Ajouter' }}</button>
       </div>
     </div>
   </div>
 </div>
+    
 
-
-    </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
@@ -82,15 +81,8 @@
             <tr v-for="(fournisseur, index) in listFournisseurs">
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="@/assets/img/temp_image.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user1"
-                    />
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{ fournisseur.fournisseur }}</h6>
+                    <h6 class="mb-0 text-sm">{{ fournisseur.nomFournisseur }}</h6>
                     <p class="text-xs text-secondary mb-0"></p>
                   </div>
                 </div>
@@ -109,17 +101,29 @@
                 <span class="text-secondary text-xs font-weight-bold">{{fournisseur.adresseFournisseur}}</span>
               </td>
               <td class="align-middle">
-                <a
+                <button
                   href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
+                  class="btn btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
                   data-toggle="tooltip"
                   data-original-title="Modifier fournisseur"
-                >Modifier</a>
+                > <i class="fas fa-edit"></i> </button>
+                <button
+                  @click="this.storeFournisseur.deleteFournisseur(fournisseur)"
+                  class="btn btn-danger btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
+                  data-toggle="tooltip"
+                  data-original-title="Supprimer fournisseur"
+                > <i class="fas fa-trash-alt"></i> </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="card-footer pb-0">
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
+        <i class="fa fa-plus"></i> Ajouter un fournisseur
+      </button>
     </div>
   </div>
 </template>
@@ -145,14 +149,39 @@ export default {
       let modificationFournisseur = ref(false)
       let nouveauFournisseur = ref({
         id: null,
-        libelle: '',
-        reference: '',
-        prix: 0,
-        description: '',
+        nomFournisseur: "",
+        codeFournisseur: "",
+        contactFournisseur: "",
+        emailFournisseur: "",
+        adresseFournisseur: "",
+        description: ""
       })
+
+      function ajouterFournisseur() {
+        const fournisseur = {
+          id: null,
+          nomFournisseur: nouveauFournisseur.value.nomFournisseur,
+          codeFournisseur: nouveauFournisseur.value.codeFournisseur,
+          contactFournisseur: nouveauFournisseur.value.contactFournisseur,
+          emailFournisseur: nouveauFournisseur.value.emailFournisseur,
+          adresseFournisseur: nouveauFournisseur.value.adresseFournisseur,
+          description: nouveauFournisseur.value.description
+        };
+        storeFournisseur.addFournisseur(fournisseur);
+
+        nouveauFournisseur.value.id = null;
+        nouveauFournisseur.value.nomFournisseur = '';
+        nouveauFournisseur.value.codeFournisseur = '';
+        nouveauFournisseur.value.contactFournisseur = '';
+        nouveauFournisseur.value.emailFournisseur = '';
+        nouveauFournisseur.value.adresseFournisseur = '';
+        nouveauFournisseur.value.description = '';
+      }
+
 
       return{
         storeFournisseur,
+        ajouterFournisseur,
         listFournisseurs,
         ajoutFournisseur,
         modificationFournisseur,

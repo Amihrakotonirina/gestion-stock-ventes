@@ -63,7 +63,7 @@ const router = createRouter({
       path: "/list-produits",
       name: "list-produits",
       component: () => import('@/app/modules/produit/views/Produits.vue'),
-    },    
+    },
     {
       path: "/detail-produit",
       name: "detail-produit",
@@ -73,7 +73,7 @@ const router = createRouter({
       path: "/list-categories",
       name: "list-categories",
       component: () => import('@/app/modules/produit/categorie/views/Categories.vue'),
-    },    
+    },
     {
       path: "/detail-categorie",
       name: "detail-categories",
@@ -83,11 +83,16 @@ const router = createRouter({
       path: "/list-fournisseurs",
       name: "list-fournisseurs",
       component: () => import('@/app/modules/fournisseur/views/Fournisseurs.vue'),
-    },    
+    },
     {
       path: "/detail-fournisseur",
       name: "detail-fournisseur",
       component: () => import('@/app/modules/fournisseur/views/Fournisseur.vue'),
+    },
+    {
+      path: "/stock",
+      name: "stock",
+      component: () => import('@/app/modules/stock/views/Stock.vue'),
     },
   ]
 })

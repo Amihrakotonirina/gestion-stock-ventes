@@ -3,9 +3,10 @@
     <div class="card-header pb-0">
       <h3>Liste des produits ({{listProduits.length}})</h3>
       
-      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#produitModal">
-        Ajouter un produit
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#produitModal">
+        <i class="fa fa-plus"></i> Ajouter un produit
       </button>
+    </div>
 
 <!-- Modal -->
 <div class="modal fade" id="produitModal" tabindex="-1" aria-labelledby="produitModalLabel" aria-hidden="true">
@@ -44,15 +45,14 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="submit" @click="storeProduit.addProduit(nouveauProduit)" class="btn btn-primary">{{ modificationProduit ? 'Modifier' : 'Ajouter' }}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" @click="ajouterProduit()" data-bs-dismiss="modal" class="btn btn-primary">{{ modificationProduit ? 'Modifier' : 'Ajouter' }}</button>
       </div>
     </div>
   </div>
 </div>
 
 
-    </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
@@ -99,18 +99,31 @@
                 <span class="badge badge-sm bg-gradient-success">en stock</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
+                <button
+                  
+                  class="btn btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
                   data-toggle="tooltip"
                   data-original-title="Modifier produit"
-                >Modifier</a>
+                >  <i class="fas fa-edit"></i> </button>
+                <button
+                  @click="this.storeProduit.deleteProduit(produit)"
+                  class="btn btn-danger btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
+                  data-toggle="tooltip"
+                  data-original-title="Supprimer produit"
+                > <i class="fas fa-trash-alt"></i> </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+    <div class="card-footer pb-0">
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#produitModal">
+        <i class="fa-solid fa-plus"></i> Ajouter un produit
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -119,7 +132,8 @@
 
 /****** stores*******/
 import { useProduitStore } from '@/stores/produit';
-import { ref } from 'vue';
+//import { ref } from 'vue';
+import { ref, onBeforeMount, computed } from '@vue/runtime-core';
 
 export default {
   name: "table-produit",
@@ -141,10 +155,30 @@ export default {
         description: '',
       })
 
+
+    function ajouterProduit() {
+      const produit = {
+        id: null,
+        libelle: nouveauProduit.value.libelle,
+        reference: nouveauProduit.value.reference,
+        prix: nouveauProduit.value.prix,
+        description: nouveauProduit.value.description,
+      };
+      storeProduit.addProduit(produit);
+
+      nouveauProduit.value.id = null;
+      nouveauProduit.value.libelle = '';
+      nouveauProduit.value.reference = '';
+      nouveauProduit.value.prix = 0;
+      nouveauProduit.value.description = '';
+    }
+
+
       return{
       	storeProduit,
       	listProduits,
         ajoutProduit,
+        ajouterProduit,
         modificationProduit,
         nouveauProduit,
       }

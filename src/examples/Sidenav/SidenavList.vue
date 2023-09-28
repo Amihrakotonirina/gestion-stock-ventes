@@ -41,8 +41,8 @@
       </li>
       <li class="nav-item">
         <sidenav-item
-          url="/virtual-reality"
-          :class="getRoute() === 'virtual-reality' ? 'active' : ''"
+          url="/stock"
+          :class="getRoute() === 'stock' ? 'active' : ''"
           navText="Stocks"
         >
           <template v-slot:icon>

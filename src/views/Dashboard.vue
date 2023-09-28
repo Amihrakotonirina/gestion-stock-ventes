@@ -1,7 +1,7 @@
 <template>
   <div class="py-4 container-fluid">
     <div class="row">
-      <div class="col-lg-12">
+      <!--div class="col-lg-12">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-12">
             <card
@@ -51,7 +51,7 @@
         </div>
         <div class="row">
           <div class="col-lg-7 mb-lg">
-            <!-- line chart -->
+            <! -- line chart -- >
             <div class="card z-index-2">
               <gradient-line-chart />
             </div>
@@ -111,13 +111,13 @@
             <categories-card />
           </div>
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 </template>
 <script>
 import Card from "@/examples/Cards/Card.vue";
-import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
+//import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 import Carousel from "./components/Carousel.vue";
 import CategoriesCard from "./components/CategoriesCard.vue";
 
@@ -199,7 +199,7 @@ export default {
   },
   components: {
     Card,
-    GradientLineChart,
+    //GradientLineChart,
     Carousel,
     CategoriesCard,
   },

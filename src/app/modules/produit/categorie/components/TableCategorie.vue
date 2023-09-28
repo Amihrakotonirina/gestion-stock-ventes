@@ -3,9 +3,10 @@
     <div class="card-header pb-0">
       <h3>Toutes les catégories ({{listCategories.length}})</h3>
       
-      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#categorieModal">
-        Ajouter une categorie
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#categorieModal">
+        <i class="fa fa-plus"></i> Ajouter une categorie
       </button>
+    </div>
 
 <!-- Modal -->
 <div class="modal fade" id="categorieModal" tabindex="-1" aria-labelledby="categorieModalLabel" aria-hidden="true">
@@ -32,14 +33,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="submit" @click="storeCategorie.addCategorie(nouvelCategorie)" class="btn btn-primary">{{ modificationCategorie ? 'Modifier' : 'Ajouter' }}</button>
+        <button type="submit" @click="ajouterCategorie()" data-bs-dismiss="modal" class="btn btn-primary">{{ modificationCategorie ? 'Modifier' : 'Ajouter' }}</button>
       </div>
     </div>
   </div>
 </div>
 
 
-    </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
@@ -51,6 +51,9 @@
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >Description</th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >Actions</th>
    
             </tr>
           </thead>
@@ -69,17 +72,29 @@
                 <p class="text-xs text-secondary mb-0"></p>
               </td>
               <td class="align-middle">
-                <a
+                <button
                   href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
+                  class="btn btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
                   data-toggle="tooltip"
                   data-original-title="Modifier categorie"
-                >Modifier</a>
+                > <i class="fas fa-edit"></i> </button>
+                <button
+                  @click="this.storeCategorie.deleteCategorie(categorie)"
+                  class="btn btn-danger btn-icon-only btn-xs align-items-center justify-content-center ms-auto"
+                  data-toggle="tooltip"
+                  data-original-title="Supprimer catégorie"
+                > <i class="fas fa-trash-alt"></i> </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="card-footer pb-0">
+      <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#categorieModal">
+        <i class="fa fa-plus"></i> Ajouter une categorie
+      </button>
     </div>
   </div>
 </template>
@@ -105,14 +120,26 @@ export default {
       let modificationCategorie = ref(false)
       let nouvelCategorie = ref({
         id: null,
-        libelle: '',
-        reference: '',
-        prix: 0,
+        categorie: '',
         description: '',
       })
 
+      function ajouterCategorie() {
+      const categorie = {
+        id: null,
+        categorie: nouvelCategorie.value.categorie,
+        description: nouvelCategorie.value.description,
+      };
+      storeCategorie.addCategorie(categorie);
+
+      nouvelCategorie.value.id = null;
+      nouvelCategorie.value.categorie = '';
+      nouvelCategorie.value.description = '';
+    }
+
       return{
         storeCategorie,
+        ajouterCategorie,
         listCategories,
         ajoutCategorie,
         modificationCategorie,

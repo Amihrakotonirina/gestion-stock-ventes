@@ -51,24 +51,16 @@ export const useProduitStore = defineStore({
       this.produits.push(produit)
     },
 
-/************************ GET SPONSORISES ****************************/
+    deleteProduit(produit){
+      const index = this.produits.indexOf(produit);
 
-    allSponsorisedProduitsByType(type){
-      let res = this.getAllProduits.filter(produit => produit.typeProduitText == type);
-
-      if (res.length > 0)
-      {
-        return res.filter(produit => produit.isSponsored == true);
-      }
-      else
-      {
-        console.log("No sponsored produit found.");
-      }
-
+        if (index !== -1) {
+          this.produits.splice(index, 1);
+          return true
+        } else {
+          return false
+        }
     },
-/************************ END GET SPONSORISES ****************************/
-
-
 
 
 /*

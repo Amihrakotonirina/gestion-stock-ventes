@@ -1,1 +1,1 @@
-Stock.vue
+<template>Stocks</template>

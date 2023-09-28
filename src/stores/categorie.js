@@ -41,7 +41,17 @@ export const useCategorieStore = defineStore({
       categorie.id = "".concat(Math.floor(Math.random()*1000000000000)).concat(Math.floor(Math.random()*1000000000000))
       this.categories.push(categorie)
     },
+    
+    deleteCategorie(categorie){
+      const index = this.categories.indexOf(categorie);
 
+        if (index !== -1) {
+          this.categories.splice(index, 1);
+          return true
+        } else {
+          return false
+        }
+    },
 /*
     nomCategorieById(id){
       console.log(id)

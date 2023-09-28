@@ -42,6 +42,17 @@ export const useFournisseurStore = defineStore({
       this.fournisseurs.push(fournisseur)
     },
 
+    deleteFournisseur(fournisseur){
+      const index = this.fournisseurs.indexOf(fournisseur);
+
+        if (index !== -1) {
+          this.fournisseurs.splice(index, 1);
+          return true
+        } else {
+          return false
+        }
+    },
+
 /*
     nomFournisseurById(id){
       console.log(id)
