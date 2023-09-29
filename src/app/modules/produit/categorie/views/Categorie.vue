@@ -9,7 +9,7 @@
           <div class="card-content">
             <h3>
               categorie : {{ categorie.categorie }}
-              <button class="btn btn-primary float-end" @click="router.push('/list-categories')">Tous les categories</button>
+              <button class="btn btn-primary float-end" @click="router.push('/list-categories')">Toutes les categories</button>
             </h3>
             <hr>
             <p>
