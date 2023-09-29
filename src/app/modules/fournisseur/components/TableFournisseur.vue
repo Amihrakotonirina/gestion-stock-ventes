@@ -4,7 +4,7 @@
       <h3>Liste des fournisseurs ({{listFournisseurs.length}})</h3>
       <p>todo: tokony asiana test hoe vide vao afaka supprimer-na</p>
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
-       <i class="fa fa-plus"></i> Ajouter un fournisseur
+       <i class="fa fa-plus-square" aria-hidden="true"></i> Ajouter un fournisseur
       </button>
     </div>
 <!-- Modal -->
@@ -122,7 +122,7 @@
 
     <div class="card-footer pb-0">
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
-        <i class="fa fa-plus"></i> Ajouter un fournisseur
+        <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter un fournisseur
       </button>
     </div>
   </div>

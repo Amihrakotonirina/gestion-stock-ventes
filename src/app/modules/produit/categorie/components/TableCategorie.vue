@@ -5,7 +5,7 @@
       <p>todo: tokony asiana test hoe vide vao afaka supprimer-na</p>
       
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#categorieModal">
-        <i class="fa fa-plus"></i> Ajouter une categorie
+        <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter une categorie
       </button>
     </div>
 
@@ -94,7 +94,7 @@
 
     <div class="card-footer pb-0">
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#categorieModal">
-        <i class="fa fa-plus"></i> Ajouter une categorie
+        <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter une categorie
       </button>
     </div>
   </div>

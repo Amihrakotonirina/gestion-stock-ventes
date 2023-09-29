@@ -4,7 +4,7 @@
       <h3>Liste des produits <span class="badge btn-primary">({{listProduits.length}})</span></h3>
       
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#produitModal">
-        <i class="fa fa-plus"></i> Ajouter un produit
+        <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter un produit
       </button>
     </div>
 
@@ -132,7 +132,7 @@
 
     <div class="card-footer pb-0">
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#produitModal">
-        <i class="fa-solid fa-plus"></i> Ajouter un produit
+        <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter un produit
       </button>
     </div>
 

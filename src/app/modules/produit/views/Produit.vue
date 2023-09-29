@@ -38,7 +38,7 @@
             <div class="col-12">
               <button class="btn btn-primary float-end ml-3" @click="router.push('/list-stocks')">Historique des mouvements</button>
               <button type="button" class="btn btn-primary ml-3 float-end" data-bs-toggle="modal" data-bs-target="#stockModal">
-                <i class="fa fa-plus"></i> Ajouter un mouvement (entrée/sortie)
+                <i class="fa fa-plus-square" aria-hidden="true"></i>  Ajouter un mouvement (entrée/sortie)
               </button>
             </div> 
            </div> 
