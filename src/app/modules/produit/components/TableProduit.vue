@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header pb-0">
-      <h3>Liste des produits ({{listProduits.length}})</h3>
+      <h3>Liste des produits <span class="badge btn-primary">({{listProduits.length}})</span></h3>
       
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#produitModal">
         <i class="fa fa-plus"></i> Ajouter un produit
@@ -28,8 +28,20 @@
             <input id="referenceInput" class="form-control" v-model="nouveauProduit.reference" placeholder="Référence" required>
           </div>
           <div class="mb-3">
+            <label for="selectCategorie" class="form-label">Catégorie</label>
+            <select id="selectCategorie" class="form-select form-select-sm" v-model="nouveauProduit.categorieId" aria-label=".form-select-sm">
+              <option v-for="categorie in listCategories" :value="categorie.id"> {{ categorie.categorie }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
             <label for="prixInput" class="form-label">Prix</label>
             <input id="prixInput" class="form-control" v-model.number="nouveauProduit.prix" type="number" placeholder="Prix" required>
+          </div>
+          <div class="mb-3">
+            <label for="selectFournisseur" class="form-label">Fournisseur</label>
+            <select id="selectFournisseur" class="form-select form-select-sm" v-model="nouveauProduit.fournisseurId" aria-label=".form-select-sm">
+              <option v-for="fournisseur in listFournisseurs" :value="fournisseur.id"> {{ fournisseur.nomFournisseur }}</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="descriptionInput" class="form-label">Description</label>
@@ -73,8 +85,8 @@
           </thead>
           <tbody>
             <tr v-for="(produit, index) in listProduits">
-              <td>
-                <div class="d-flex px-2 py-1">
+              <td role="button">
+                <div class="d-flex px-2 py-1" @click="router.push({ name: 'detail-produit', params: { uuid: produit.uuid } })">
                   <div>
                     <img
                       src="@/assets/img/temp_image.jpg"
@@ -128,12 +140,15 @@
 </template>
 
 <script>
+//import { ref } from 'vue';
+import { ref, onBeforeMount, computed } from '@vue/runtime-core';
+import { useRouter } from 'vue-router';
 
 
 /****** stores*******/
 import { useProduitStore } from '@/stores/produit';
-//import { ref } from 'vue';
-import { ref, onBeforeMount, computed } from '@vue/runtime-core';
+  import { useFournisseurStore } from '@/stores/fournisseur';
+  import { useCategorieStore } from '@/stores/categorie';
 
 export default {
   name: "table-produit",
@@ -142,8 +157,13 @@ export default {
 
   setup(){
       const storeProduit = useProduitStore();
+      let storeFournisseur = useFournisseurStore();
+      let storeCategorie = useCategorieStore();
+      const router = useRouter();
 
       let listProduits = storeProduit.getAllProduits;
+      let listCategories = storeCategorie.getAllCategories;
+      let listFournisseurs = storeFournisseur.getAllFournisseurs;
 
       let ajoutProduit = ref(false)
       let modificationProduit = ref(false)
@@ -152,8 +172,11 @@ export default {
         libelle: '',
         reference: '',
         prix: 0,
+        categorieId: null,
         description: '',
+        fournisseurId: null,
       })
+
 
 
     function ajouterProduit() {
@@ -162,9 +185,12 @@ export default {
         libelle: nouveauProduit.value.libelle,
         reference: nouveauProduit.value.reference,
         prix: nouveauProduit.value.prix,
+        categorieId: nouveauProduit.value.categorieId,
+        fournisseurId: nouveauProduit.value.fournisseurId,
         description: nouveauProduit.value.description,
       };
       storeProduit.addProduit(produit);
+      //console.log(listProduits);
 
       nouveauProduit.value.id = null;
       nouveauProduit.value.libelle = '';
@@ -175,8 +201,9 @@ export default {
 
 
       return{
-      	storeProduit,
-      	listProduits,
+        storeProduit, storeFournisseur, storeCategorie,
+        router,
+      	listProduits, listCategories, listFournisseurs,
         ajoutProduit,
         ajouterProduit,
         modificationProduit,

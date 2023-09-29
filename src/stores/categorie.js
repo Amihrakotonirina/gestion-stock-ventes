@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 //import axios from "axios";
 import { categories } from "@/app/data/listCategories.js";
+import { uuid } from 'vue3-uuid';
 
 export const useCategorieStore = defineStore({
   id: 'categorie',
@@ -33,12 +34,17 @@ export const useCategorieStore = defineStore({
     },
 
     categorieById(id){
-      return this.getAllCategories.filter(categorie => categorie.id == id);
+      return this.getAllCategories.find(categorie => categorie.id === id);
+    },
+
+    categorieByUuid(uuid){
+      return this.getAllCategories.find(categorie => categorie.uuid === uuid);
     },
 
 
     addCategorie(categorie){
-      categorie.id = "".concat(Math.floor(Math.random()*1000000000000)).concat(Math.floor(Math.random()*1000000000000))
+      categorie.id = Math.floor(Math.random()*1000000)
+      categorie.uuid = uuid.v1()
       this.categories.push(categorie)
     },
     

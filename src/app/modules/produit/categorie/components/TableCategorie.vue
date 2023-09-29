@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-header pb-0">
       <h3>Toutes les catégories ({{listCategories.length}})</h3>
+      <p>todo: tokony asiana test hoe vide vao afaka supprimer-na</p>
       
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#categorieModal">
         <i class="fa fa-plus"></i> Ajouter une categorie
@@ -59,8 +60,8 @@
           </thead>
           <tbody>
             <tr v-for="(categorie, index) in listCategories">
-              <td>
-                <div class="d-flex px-2 py-1">
+              <td role="boutton">
+                <div class="d-flex px-2 py-1" @click="router.push({ name: 'detail-categorie', params: { uuid: categorie.uuid } })">
                   <div class="d-flex flex-column justify-content-center">
                     <h6 class="mb-0 text-sm">{{ categorie.categorie }}</h6>
                     <p class="text-xs text-secondary mb-0"></p>
@@ -105,6 +106,7 @@
 /****** stores*******/
 import { useCategorieStore } from '@/stores/categorie';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: "table-categorie",
@@ -113,6 +115,7 @@ export default {
 
   setup(){
       const storeCategorie = useCategorieStore();
+      const router = useRouter();
 
       let listCategories = storeCategorie.getAllCategories;
 
@@ -138,6 +141,7 @@ export default {
     }
 
       return{
+        router,
         storeCategorie,
         ajouterCategorie,
         listCategories,

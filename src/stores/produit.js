@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 //import axios from "axios";
 import { produits } from "@/app/data/listProduits.js";
+import { uuid } from 'vue3-uuid';
 
 export const useProduitStore = defineStore({
   id: 'produit',
@@ -33,12 +34,20 @@ export const useProduitStore = defineStore({
     },
 
     produitById(id){
-      return this.getAllProduits.filter(produit => produit.id == id);
+      return (this.getAllProduits.find(produit => produit.id === id));
+    },
+
+    produitByUuid(uuid){
+      return (this.getAllProduits.find(produit => produit.uuid === uuid));
     },
 
 
-    allProduitsByType(type){
-      return this.getAllProduits.filter(produit => produit.typeProduitText == type);
+    allProduitByFournisseurId(fournisseurId){
+      return this.getAllProduits.filter(produit => produit.fournisseurId == fournisseurId);
+    },
+
+    allProduitByCategorieId(categorieId){
+      return this.getAllProduits.filter(produit => produit.categorieId == categorieId);
     },
 
     updateProduitEnCours(id) {
@@ -47,7 +56,8 @@ export const useProduitStore = defineStore({
     },
 
     addProduit(produit){
-      produit.id = "".concat(Math.floor(Math.random()*1000000000000)).concat(Math.floor(Math.random()*1000000000000))
+      produit.id = Math.floor(Math.random()*1000000)
+      produit.uuid = uuid.v1();
       this.produits.push(produit)
     },
 

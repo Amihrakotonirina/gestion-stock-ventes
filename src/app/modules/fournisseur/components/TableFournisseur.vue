@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header pb-0">
       <h3>Liste des fournisseurs ({{listFournisseurs.length}})</h3>
-      
+      <p>todo: tokony asiana test hoe vide vao afaka supprimer-na</p>
       <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#fournisseurModal">
        <i class="fa fa-plus"></i> Ajouter un fournisseur
       </button>
@@ -79,8 +79,8 @@
           </thead>
           <tbody>
             <tr v-for="(fournisseur, index) in listFournisseurs">
-              <td>
-                <div class="d-flex px-2 py-1">
+              <td role="button">
+                <div class="d-flex px-2 py-1" @click="router.push({name: 'detail-fournisseur', params: {uuid: fournisseur.uuid }})">
                   <div class="d-flex flex-column justify-content-center">
                     <h6 class="mb-0 text-sm">{{ fournisseur.nomFournisseur }}</h6>
                     <p class="text-xs text-secondary mb-0"></p>
@@ -133,6 +133,7 @@
 
 /****** stores*******/
 import { useFournisseurStore } from '@/stores/fournisseur';
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
 export default {
@@ -142,6 +143,7 @@ export default {
 
   setup(){
       const storeFournisseur = useFournisseurStore();
+      const router = useRouter();
 
       let listFournisseurs = storeFournisseur.getAllFournisseurs;
 
@@ -180,6 +182,7 @@ export default {
 
 
       return{
+        router,
         storeFournisseur,
         ajouterFournisseur,
         listFournisseurs,

@@ -41,8 +41,8 @@
       </li>
       <li class="nav-item">
         <sidenav-item
-          url="/stock"
-          :class="getRoute() === 'stock' ? 'active' : ''"
+          url="/list-stocks"
+          :class="getRoute() === 'list-stocks' ? 'active' : ''"
           navText="Stocks"
         >
           <template v-slot:icon>
@@ -72,13 +72,13 @@
           </template>
         </sidenav-item>
       </li>
-      <li class="mt-3 nav-item">
+      <!--li class="mt-3 nav-item">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6 ms-2"
         >
           Connexion
         </h6>
-      </li>
+      </li-->
       <!--li class="nav-item">
         <sidenav-item
           url="/profile"
@@ -90,7 +90,7 @@
           </template>
         </sidenav-item>
       </li-->
-      <li class="nav-item">
+      <!--li class="nav-item">
         <sidenav-item
           url="/signin"
           :class="getRoute() === 'signin' ? 'active' : ''"
@@ -100,7 +100,7 @@
             <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
           </template>
         </sidenav-item>
-      </li>
+      </li-->
     </ul>
   </div>
 

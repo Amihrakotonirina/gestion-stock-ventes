@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 //import axios from "axios";
 import { fournisseurs } from "@/app/data/listFournisseurs.js";
+import { uuid } from 'vue3-uuid';
 
 export const useFournisseurStore = defineStore({
   id: 'fournisseur',
@@ -33,12 +34,17 @@ export const useFournisseurStore = defineStore({
     },
 
     fournisseurById(id){
-      return this.getAllFournisseurs.filter(fournisseur => fournisseur.id == id);
+      return this.getAllFournisseurs.find(fournisseur => fournisseur.id === id);
+    },
+
+    fournisseurByUuid(uuid){
+      return this.getAllFournisseurs.find(fournisseur => fournisseur.uuid === uuid);
     },
 
 
     addFournisseur(fournisseur){
-      fournisseur.id = "".concat(Math.floor(Math.random()*1000000000000)).concat(Math.floor(Math.random()*1000000000000))
+      fournisseur.id = Math.floor(Math.random()*1000000)
+      fournisseur.uuid = uuid.v1();
       this.fournisseurs.push(fournisseur)
     },
 

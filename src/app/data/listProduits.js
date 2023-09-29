@@ -1,93 +1,132 @@
 export const produits = [
     {
         id: 1,
+        uuid: "PROD12345",
         reference: "PROD12345",
         libelle: "Ordinateur portable",
         prix: 899.99,
-        description: "Ordinateur portable haut de gamme avec écran tactile."
+        description: "Ordinateur portable haut de gamme avec écran tactile.",
+        fournisseurId : 5,
+        categorieId : 5,
     },
     {
         id: 2,
+        uuid: "PROD67890",
         reference: "PROD67890",
         libelle: "Smartphone",
         prix: 499.99,
-        description: "Smartphone dernier cri avec un appareil photo de 64 mégapixels."
+        description: "Smartphone dernier cri avec un appareil photo de 64 mégapixels.",
+        fournisseurId : 6,
+        categorieId : 1,
     },
     {
         id: 3,
+        uuid: "PROD54321",
         reference: "PROD54321",
         libelle: "Télévision 4K",
         prix: 799.99,
-        description: "Télévision Ultra HD 4K de 55 pouces avec technologie HDR."
+        description: "Télévision Ultra HD 4K de 55 pouces avec technologie HDR.",
+        fournisseurId : 1,
+        categorieId : 1,
     },
     {
         id: 4,
+        uuid: "PROD98765",
         reference: "PROD98765",
         libelle: "Machine à café",
         prix: 149.99,
-        description: "Machine à café automatique avec moulin intégré."
+        description: "Machine à café automatique avec moulin intégré.",
+        fournisseurId : 2,
+        categorieId : 2,
     },
     {
         id: 5,
+        uuid: "PROD24680",
         reference: "PROD24680",
         libelle: "Console de jeu",
         prix: 299.99,
-        description: "Console de jeu de nouvelle génération avec 1 To de stockage."
+        description: "Console de jeu de nouvelle génération avec 1 To de stockage.",
+        fournisseurId : 2,
+        categorieId : 2,
     },
     {
         id: 6,
+        uuid: "PROD13579",
         reference: "PROD13579",
         libelle: "Casque audio sans fil",
         prix: 129.99,
-        description: "Casque audio Bluetooth avec suppression active du bruit."
+        description: "Casque audio Bluetooth avec suppression active du bruit.",
+        fournisseurId : 1,
+        categorieId : 1,
     },
     {
         id: 7,
+        uuid: "PROD11223",
         reference: "PROD11223",
         libelle: "Tablette tactile",
         prix: 349.99,
-        description: "Tablette Android avec écran Retina de 10 pouces."
+        description: "Tablette Android avec écran Retina de 10 pouces.",
+        fournisseurId : 2,
+        categorieId : 2,
     },
     {
         id: 8,
+        uuid: "PROD45678",
         reference: "PROD45678",
         libelle: "Réfrigérateur",
         prix: 799.99,
-        description: "Réfrigérateur à deux portes avec distributeur d'eau et de glace."
+        description: "Réfrigérateur à deux portes avec distributeur d'eau et de glace.",
+        fournisseurId : 5,
+        categorieId : 5,
     },
     {
         id: 9,
+        uuid: "PROD98765",
         reference: "PROD98765",
         libelle: "Montre intelligente",
         prix: 199.99,
-        description: "Montre connectée avec suivi d'activité et GPS intégré."
+        description: "Montre connectée avec suivi d'activité et GPS intégré.",
+        fournisseurId : 5,
+        categorieId : 5,
     },
     {
         id: 10,
+        uuid: "ROD13579",
         reference: "PROD13579",
         libelle: "Enceinte Bluetooth",
         prix: 79.99,
-        description: "Enceinte portable étanche avec une autonomie de 12 heures."
+        description: "Enceinte portable étanche avec une autonomie de 12 heures.",
+        fournisseurId : 3,
+        categorieId : 3,
     },
     {
         id: 11,
+        uuid: "ROD24681",
         reference: "PROD24681",
         libelle: "Caméra de sécurité",
         prix: 149.99,
-        description: "Caméra de sécurité HD pour la surveillance à domicile."
+        description: "Caméra de sécurité HD pour la surveillance à domicile.",
+        fournisseurId : 3,
+        categorieId : 3,
     },
     {
         id: 12,
+        uuid: "ROD98766",
         reference: "PROD98766",
         libelle: "Aspirateur robot",
         prix: 299.99,
-        description: "Aspirateur robot intelligent avec cartographie laser."
+        description: "Aspirateur robot intelligent avec cartographie laser.",
+        fournisseurId : 6,
+        categorieId : 4,
     },
     {
         id: 13,
+        uuid: "ROD54322",
         reference: "PROD54322",
         libelle: "Lave-linge",
         prix: 599.99,
-        description: "Lave"
+        description: "Lave",
+        fournisseurId : 1,
+        categorieId : 1,
     }
  ];

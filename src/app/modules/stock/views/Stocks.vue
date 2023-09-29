@@ -7,7 +7,7 @@
           </div>
           <div class="card-content">
 
-            <TableProduit />
+            <TableStock />
           </div>
 
         </div>
@@ -18,12 +18,12 @@
 
 <script>
 
-import TableProduit from "../components/TableProduit.vue"
+import TableStock from "../components/TableStock.vue"
 
   export default{
-    name: 'list-produits',
+    name: 'list-stock',
     components: {
-      TableProduit
+      TableStock
     },
     setup(){
 

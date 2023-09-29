@@ -65,7 +65,7 @@ const router = createRouter({
       component: () => import('@/app/modules/produit/views/Produits.vue'),
     },
     {
-      path: "/detail-produit",
+      path: "/produit/:uuid",
       name: "detail-produit",
       component: () => import('@/app/modules/produit/views/Produit.vue'),
     },
@@ -75,8 +75,8 @@ const router = createRouter({
       component: () => import('@/app/modules/produit/categorie/views/Categories.vue'),
     },
     {
-      path: "/detail-categorie",
-      name: "detail-categories",
+      path: "/categorie/:uuid",
+      name: "detail-categorie",
       component: () => import('@/app/modules/produit/categorie/views/Categorie.vue'),
     },
     {
@@ -85,14 +85,14 @@ const router = createRouter({
       component: () => import('@/app/modules/fournisseur/views/Fournisseurs.vue'),
     },
     {
-      path: "/detail-fournisseur",
+      path: "/fournisseur/:uuid",
       name: "detail-fournisseur",
       component: () => import('@/app/modules/fournisseur/views/Fournisseur.vue'),
     },
     {
-      path: "/stock",
-      name: "stock",
-      component: () => import('@/app/modules/stock/views/Stock.vue'),
+      path: "/list-stocks",
+      name: "list-stocks",
+      component: () => import('@/app/modules/stock/views/Stocks.vue'),
     },
   ]
 })

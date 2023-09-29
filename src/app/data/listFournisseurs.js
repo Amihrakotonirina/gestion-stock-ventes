@@ -1,6 +1,7 @@
 export const fournisseurs = [
     {
         id: 1,
+        uuid: "FRN0001",
         codeFournisseur: "FRN0001",
         nomFournisseur: "Fournisseur 1",
         contactFournisseur: "0333333333",
@@ -10,6 +11,7 @@ export const fournisseurs = [
     },
     {
         id: 2,
+        uuid: "FRN0002",
         codeFournisseur: "FRN0002",
         nomFournisseur: "Fournisseur 2",
         contactFournisseur: "0333333333",
@@ -19,6 +21,7 @@ export const fournisseurs = [
     },
     {
         id: 3,
+        uuid: "FRN0003",
         codeFournisseur: "FRN0003",
         nomFournisseur: "Fournisseur 3",
         contactFournisseur: "0333333333",
@@ -28,6 +31,7 @@ export const fournisseurs = [
     },
     {
         id: 4,
+        uuid: "FRN0004",
         codeFournisseur: "FRN0004",
         nomFournisseur: "Fournisseur 4",
         contactFournisseur: "0333333333",
@@ -37,6 +41,7 @@ export const fournisseurs = [
     },
     {
         id: 5,
+        uuid: "FRN0005",
         codeFournisseur: "FRN0005",
         nomFournisseur: "Fournisseur 5",
         contactFournisseur: "0333333333",
@@ -46,6 +51,7 @@ export const fournisseurs = [
     },
     {
         id: 6,
+        uuid: "FRN0006",
         codeFournisseur: "FRN0006",
         nomFournisseur: "Fournisseur 6",
         contactFournisseur: "0333333333",
