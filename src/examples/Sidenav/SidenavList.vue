@@ -114,9 +114,10 @@ export default {
   props: {
     cardBg: String
   },
+  props: ["custom_class", "layout"],
   data() {
     return {
-      title: "Argon Dashboard 2",
+      title: "G-Stock",
       controls: "dashboardsExamples",
       isActive: "active"
     };

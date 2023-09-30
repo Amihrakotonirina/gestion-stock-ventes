@@ -1,0 +1,75 @@
+<template>
+  <nav class="navbar navbar-expand-lg mb-3 mt-3 px-0 mx-4 shadow-none0 border-radius-xl">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">G-Stock</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Fournisseurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Catégorie produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Stocks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Ventes</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+</template>
+<script>
+import Breadcrumbs from "../Breadcrumbs.vue";
+import { mapMutations, mapActions } from "vuex";
+
+export default {
+  name: "navbar",
+
+  data() {
+    return {
+      showMenu: false
+    };
+  },
+  props: ["minNav", "textWhite"],
+  created() {
+    this.minNav;
+  },
+  methods: {
+    ...mapMutations(["navbarMinimize", "toggleConfigurator"]),
+    ...mapActions(["toggleSidebarColor"]),
+
+    toggleSidebar() {
+      this.toggleSidebarColor("bg-white");
+      this.navbarMinimize();
+    }
+  },
+  components: {
+    Breadcrumbs
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    }
+  }
+};
+</script>
+<style>
+  #navbarDropdown {
+    color: red;
+  }
+</style>
