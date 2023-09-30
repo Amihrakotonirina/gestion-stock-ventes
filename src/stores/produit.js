@@ -42,6 +42,11 @@ export const useProduitStore = defineStore({
     },
 
 
+    produitByReference(ref){
+      return (this.getAllProduits.find(produit => produit.reference === ref));
+    },
+
+
     allProduitByFournisseurId(fournisseurId){
       return this.getAllProduits.filter(produit => produit.fournisseurId == fournisseurId);
     },

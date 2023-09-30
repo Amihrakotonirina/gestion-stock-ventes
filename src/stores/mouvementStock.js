@@ -41,7 +41,7 @@ export const useStockStore = defineStore({
       return this.getAllStocks.find(stock => stock.uuid === uuid);
     },
 
-    stockByReferenceProduit(refProduit){
+    allStockByReferenceProduit(refProduit){
       return this.getAllStocks.filter(stock => stock.referenceProduit === refProduit);
     },
 

@@ -19,16 +19,20 @@
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >Référence produit</th>
-              <th class="text-secondary opacity-7"></th>
+              <th 
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Produit
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(stock, index) in listStocks">
-              <td role="button">
+              <td>
                 <div class="d-flex px-2 py-1"> <!-- @click="router.push({ name: 'detail-stock', params: { uuid: stock.uuid } })"-->
       
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{ stock.date }}</h6>
+                    <span class="text-secondary text-xs font-weight-bold">{{stock.date}}</span>
                     <p class="text-xs text-secondary mb-0"></p>
                   </div>
                 </div>
@@ -39,9 +43,11 @@
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{stock.quantite}}</span>
               </td>
-
+              <td role="button" class="align-middle text-center" @click="router.push({name: 'detail-produit', params: {uuid: storeProduit.produitByReference(stock.referenceProduit).uuid }})">
+                  <h6 class="mb-0 text-sm">{{ stock.referenceProduit }}</h6>
+              </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{stock.referenceProduit}}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{storeProduit.produitByReference(stock.referenceProduit).libelle}}</span>
               </td>
             </tr>
           </tbody>
@@ -64,6 +70,7 @@ import { useRouter } from 'vue-router';
 
 /****** stores*******/
 import { useStockStore } from '@/stores/mouvementStock';
+import { useProduitStore } from '@/stores/produit';
 
 export default {
   name: "table-stock",
@@ -72,12 +79,13 @@ export default {
 
   setup(){
       const storeStock = useStockStore();
+      const storeProduit = useProduitStore();
       const router = useRouter();
 
       let listStocks = storeStock.getAllStocks;
 
       return{
-        storeStock,
+        storeStock, storeProduit,
         router,
         listStocks,
       }

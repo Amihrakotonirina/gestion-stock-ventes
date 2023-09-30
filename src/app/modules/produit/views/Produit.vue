@@ -105,6 +105,12 @@
               >Quantité</th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >Stock</th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >Status</th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >Référence produit</th>
               <th class="text-secondary opacity-7"></th>
             </tr>
@@ -125,6 +131,12 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{stock.quantite}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold"><strong>{ { calculerStock(stock.type, stock.quantite) } }</strong></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="badge badge-sm bg-gradient-primary">en stock</span>
               </td>
 
               <td class="align-middle text-center">
@@ -168,6 +180,7 @@
       let storeStock = useStockStore();
       let route = useRoute();
       let router = useRouter();
+      let dernierStock = ref(0);
 
       let listStocks = ref(null);
       let mouvement = ref({
@@ -203,7 +216,7 @@
           console.log('Produit ou catégorie non trouvé.')
         }
 
-        listStocks.value = storeStock.stockByReferenceProduit(produit.value.reference);
+        listStocks.value = storeStock.allStockByReferenceProduit(produit.value.reference);
 
       });
 
@@ -219,7 +232,7 @@
         };
         storeStock.addStock(nouveauMouvement);
 
-        listStocks.value = storeStock.stockByReferenceProduit(produit.value.reference);
+        listStocks.value = storeStock.allStockByReferenceProduit(produit.value.reference);
 
         console.log("listStocks");
         console.log(listStocks);
@@ -231,13 +244,23 @@
         mouvement.value.commentaire = '';
       }
 
+      function calculerStock(type, stock_init, quantite){
+        if (type=== 'entree'){
+          return (stock_init * 1) + (quantite *1) 
+        }
+        else{
+          return (stock_init * 1) - (quantite *1) 
+        }
+      }
+
 
 
       return {
         route, router,
         storeProduit, storeFournisseur, storeCategorie, storeStock,
         produit, fournisseur, categorie, mouvement, listStocks, 
-        ajouterMouvement,
+        dernierStock,
+        ajouterMouvement, calculerStock, 
       };
     }
   }
