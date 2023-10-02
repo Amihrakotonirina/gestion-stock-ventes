@@ -35,7 +35,7 @@
           class="navbar-brand-img h-100"
           alt="main_logo"
         />
-        <span class="ms-2 font-weight-bold me-2">G-Stock</span>
+        <span class="ms-2 font-weight-bold me-2"></span>
       </router-link>
     </div>
     <hr class="mt-0 horizontal dark" />
@@ -44,8 +44,8 @@
 </template>
 <script>
 import SidenavList from "@/examples/Sidenav/SidenavList.vue";
-import logo from "@/assets/img/logo-ct-dark.png";
-import logoWhite from "@/assets/img/logo-ct.png";
+import logo from "@/assets/img/logos/logo_g_stock_rectangle.png";
+import logoWhite from "@/assets/img/logos/logo_g_stock_rectangle.png";
 
 export default {
   name: "index",

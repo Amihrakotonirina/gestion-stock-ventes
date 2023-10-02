@@ -6,7 +6,14 @@
       <router-link
         class="navbar-brand font-weight-bolder ms-lg-0 ms-3"
         to="/"
-        >G-Stock</router-link
+        >
+           <img
+          src="@/assets/img/logos/logo_g_stock_rectangle.png"
+          class="navbar-brand-img"
+          height="50"
+          alt="main_logo"
+        />
+        </router-link
       >
       <button
         class="shadow-none navbar-toggler ms-2"
